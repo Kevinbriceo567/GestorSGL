@@ -26,7 +26,7 @@
 
     .grid-container {
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto auto auto auto;
         background-color: white;
         padding: 1px;
         width: 100%
@@ -154,7 +154,7 @@
             @Html.ActionLink("Statistics", "Statistics", "Employees", new { @class = "btn w3-dark-grey  btn-block" })
         </div>
 
-        <div class="grid-item">@Html.ActionLink("Add New Employee", "Create", null, new { @class = "btn btn-success  btn-block" }) </div>
+        <div class="grid-item">@Html.ActionLink("Add New Employee", "Create", null, new { @class = "btn w3-dark-grey  btn-block" }) </div>
 
         <div class="grid-item">
             <div id="accordion">
@@ -180,7 +180,8 @@
                                     @using (Html.BeginForm("Index", "Employees", FormMethod.Get))
                                     {
                                         @Html.RadioButton("searchBy", "Email", true, new { @class = "form-check-input" }) <text>Email</text>
-                                        @Html.RadioButton("searchBy", "Rut", false, new { @class = "form-check-input" }) <text>Rut</text> <br />
+                                        @Html.RadioButton("searchBy", "Rut", false, new { @class = "form-check-input" }) <text>Rut</text>
+                                        @Html.RadioButton("searchBy", "Phone", false, new { @class = "form-check-input" }) <text>Phone</text> <br />
                                         @Html.TextBox("search", null, new { @class = "text-center" }) <br /> <input type="submit" value="Search" class="btn btn-success" style="margin-top:15px" />
                                     }
 
@@ -197,6 +198,8 @@
             </div>
 
         </div>
+
+        <div class="grid-item">@Html.ActionLink("Generate Report", "EmployeeReport", null, new { @class = "btn btn-success  btn-block" }) </div>
 
         <br />
 

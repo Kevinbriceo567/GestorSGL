@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SGLClientBase.Models;
+using SGLClientBase.Report;
 
 namespace SGLClientBase.Controllers
 {
@@ -22,9 +23,13 @@ namespace SGLClientBase.Controllers
             {
                 return View(db.Clients.Where(x => x.Name.StartsWith(search) || search == null).ToList());
             }
-            else
+            else if (searchBy == "Rut")
             {
                 return View(db.Clients.Where(x => x.Rut == search || search == null).ToList());
+            }
+            else
+            {
+                return View(db.Clients.Where(x => x.PhoneNumber == search || search == null).ToList());
             }
         }
 
@@ -135,6 +140,36 @@ namespace SGLClientBase.Controllers
         public ActionResult Statistics()
         {
             return View(db.Clients.ToList());
+        }
+
+        public ActionResult ClientReport(Client client)
+        {
+            ClientReport clientReport = new ClientReport();
+            byte[] abytes = clientReport.PrepareReport(GetClients());
+            return File(abytes, "application/pdf");
+        }
+
+        public List<Client> GetClients()
+        {
+            List<Client> clients = new List<Client>();
+            Client client = new Client();
+
+            foreach(var item in db.Clients)
+            {
+                client = new Client();
+                client.ID = item.ID;
+                client.Name = item.Name;
+                client.BirthDay = item.BirthDay;
+                client.EmailAddress = item.EmailAddress;
+                client.PhoneNumber = item.PhoneNumber;
+                client.Direction = item.Direction;
+                client.Rut = item.Rut;
+                client.Observation = item.Observation;
+                clients.Add(client);
+
+            }
+
+            return clients;
         }
     }
 }

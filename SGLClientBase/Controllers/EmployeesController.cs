@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PuppeteerSharp;
 using SGLClientBase.Models;
 
 namespace SGLClientBase.Controllers
@@ -24,9 +26,13 @@ namespace SGLClientBase.Controllers
             {
                 return View(db.Employees.Where(x => x.EmailCompany.StartsWith(search) || search == null).ToList());
             }
-            else
+            else if (searchBy == "Rut")
             {
                 return View(db.Employees.Where(x => x.Rut == search || search == null).ToList());
+            }
+            else
+            {
+                return View(db.Employees.Where(x => x.PhoneNumber == search || search == null).ToList());
             }
         }
 
@@ -137,7 +143,11 @@ namespace SGLClientBase.Controllers
 
         public ActionResult Statistics()
         {
+
             return View(db.Employees.ToList());
+
         }
+
+
     }
 }

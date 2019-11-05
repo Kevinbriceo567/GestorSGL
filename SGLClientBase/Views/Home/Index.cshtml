@@ -46,13 +46,14 @@
 
 
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-    <img src="~/img/mainBack.jpg" class="bgimg-1 w3-display-container" style="height:50%" />
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home" style="height:570px; margin-left:-90px; width:115%; border:0px solid red">
+    <img src="~/img/mainBack.jpg" class="bgimg-1 w3-display-container" style="height:570px; width:115%" />
     <div class="w3-display-left w3-text-white" style="padding:48px">
         <span class="w3-jumbo w3-hide-small">SGL Database</span><br>
         <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
         <span class="w3-large">Welcome to your complete database.</span>
-        <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Start Working</a></p>
+
+        <p>@Html.ActionLink("Start Working", "Index", "Clients", null, new { @class = "w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off" })</p>
     </div>
     <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
         <i class="fa fa-linkedin w3-hover-opacity"></i>
@@ -167,7 +168,7 @@
 
 
 <!-- Team Container -->
-<div class="w3-container w3-padding-64 w3-center" id="team">
+<div class="w3-container w3-padding-64 w3-center" id="team" style="margin-top:-3%">
     <h2>Our Leaders</h2>
     <p>Meet the team</p>
 
@@ -250,12 +251,13 @@
 </div>
 
 
-<div class="w3-container w3-center" id="team" style="margin-top:2%; padding-top:2%">
+
+<div class="w3-container w3-center" id="team" style="margin-top:-1%;;">
     <h2>Our Signature</h2>
 
 
     <!-- Slideshow -->
-    <div class="w3-container" style="margin-top:50px">
+    <div class="w3-container" style="margin-top:15px; ">
         <div class="w3-display-container mySlides">
             <img src="~/img/slide1.jpg" style="width:100%">
             <div class="w3-display-topleft w3-container w3-padding-32">
@@ -311,70 +313,70 @@
 
 
 
-    <!-- Image of location/map
-    <img src="https://images.unsplash.com/photo-1566410824233-a8011929225c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" class="w3-image w3-greyscale-min" style="width:100%;">
-    -->
+<!-- Image of location/map
+<img src="https://images.unsplash.com/photo-1566410824233-a8011929225c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" class="w3-image w3-greyscale-min" style="width:100%;">
+-->
 
 
 
-    <script>
-        // Script for side navigation
-        function w3_open() {
-            var x = document.getElementById("mySidebar");
-            x.style.width = "300px";
-            x.style.paddingTop = "10%";
-            x.style.display = "block";
+<script>
+    // Script for side navigation
+    function w3_open() {
+        var x = document.getElementById("mySidebar");
+        x.style.width = "300px";
+        x.style.paddingTop = "10%";
+        x.style.display = "block";
+    }
+
+    // Close side navigation
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
         }
+    }
 
-        // Close side navigation
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
+
+
+
+    // Slideshows
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demodots");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length };
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
         }
-
-        // Used to toggle the menu on smaller screens when clicking on the menu button
-        function openNav() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-
-
-
-
-        // Slideshows
-        var slideIndex = 1;
-        showDivs(slideIndex);
-
-        function plusDivs(n) {
-          showDivs(slideIndex += n);
-        }
-
-        function currentDiv(n) {
-          showDivs(slideIndex = n);
-        }
-
-        function showDivs(n) {
-          var i;
-          var x = document.getElementsByClassName("mySlides");
-          var dots = document.getElementsByClassName("demodots");
-          if (n > x.length) {slideIndex = 1}    
-          if (n < 1) {slideIndex = x.length} ;
-          for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";  
-          }
-          for (i = 0; i < dots.length; i++) {
+        for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" w3-white", "");
-          }
-          x[slideIndex-1].style.display = "block";  
-          dots[slideIndex-1].className += " w3-white";
         }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-white";
+    }
 
 
 
-    </script>
+</script>
 
 
 
