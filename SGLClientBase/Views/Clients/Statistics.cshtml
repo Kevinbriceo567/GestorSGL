@@ -1,0 +1,467 @@
+﻿@model IEnumerable<SGLClientBase.Models.Client>
+
+<h2>SGL</h2>
+
+
+
+
+
+
+
+
+
+@{int client = 0;}
+
+
+@foreach (var item in Model)
+{
+
+    ++client;
+
+}
+
+@{int withO = 0;}
+@{int withE = 0;}
+@{int compT = 0;}
+
+@{int gmailE = 0;}
+@{int hotmailE = 0;}
+@{int yahooE = 0;}
+@{int otherE = 0;}
+
+@{int more50 = 0;}
+@{int bet30and50 = 0;}
+@{int less30 = 0;}
+
+
+@foreach (var item in Model)
+{
+
+    if (!String.IsNullOrEmpty(item.Observation))
+    {
+        ++withO;
+    }
+
+
+    if (!String.IsNullOrEmpty(item.EmailAddress))
+    {
+        ++withE;
+    }
+
+
+    if (!String.IsNullOrEmpty(item.EmailAddress) && !String.IsNullOrEmpty(item.Observation))
+    {
+        ++compT;
+    }
+
+    if (item.EmailAddress.EndsWith("gmail.com"))
+    {
+        ++gmailE;
+    }
+
+    else if (item.EmailAddress.EndsWith("hotmail.com"))
+    {
+        ++hotmailE;
+    }
+
+    else if (item.EmailAddress.EndsWith("yahoo.com"))
+    {
+        ++yahooE;
+    }
+
+    else
+    {
+        ++otherE;
+    }
+
+}
+
+
+
+
+@{int yearsT = 0;}
+
+
+
+@foreach (var item in Model)
+{
+
+    DateTime Dob = item.BirthDay;
+
+    int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+    int dob = int.Parse(Dob.ToString("yyyyMMdd"));
+    int age = (now - dob) / 10000;
+
+
+    yearsT += age;
+
+
+    if (age > 50)
+    {
+        ++more50;
+    }
+    else if (age <= 50 && age >= 30)
+    {
+        ++bet30and50;
+    }
+    else
+    {
+        ++less30;
+    }
+
+
+
+}
+
+
+@{
+    int averageAge = yearsT / Model.Count();
+
+}
+
+
+
+@{ // PERCENTAGES
+    int obsPercent = (withO * 100) / Model.Count();
+
+    int emailPercent = (withE * 100) / Model.Count();
+
+    int comptPercent = (compT * 100) / Model.Count();
+
+    int gmailPercent = (gmailE * 100) / Model.Count();
+
+    int hotmailPercent = (hotmailE * 100) / Model.Count();
+
+    int yahooPercent = (hotmailE * 100) / Model.Count();
+
+    int otherEPercent = (otherE * 100) / Model.Count();
+}
+
+
+
+
+
+
+
+
+
+
+<img src="~/img/databaseBack.jpg" class="img-responsive" style="border-radius:5px" />
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:0px;margin-top:5px;">
+
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:5px">
+
+        <div class="col-lg-12 text-center">
+            <h2><i class="fa fa-server"></i> Clients Statistics</h2>
+        </div>
+
+
+
+    </header>
+
+    <hr />
+
+    <div class="w3-row-padding w3-margin-bottom">
+
+        <div class="w3-quarter">
+            <div class="w3-container w3-dark-grey w3-padding-16">
+                <div class="w3-left"><i class="fa fa-plus w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>23</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Registration</h4>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-blue-grey w3-text-white w3-padding-16">
+                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@Model.Count()</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Clients</h4>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-red w3-padding-16">
+                <div class="w3-left"><i class="fa fa-envelope w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@gmailE</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Gmail email</h4>
+            </div>
+        </div>
+
+        <div class="w3-quarter">
+            <div class="w3-container w3-purple w3-padding-16">
+                <div class="w3-left"><i class="fa fa-yahoo w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@hotmailE</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Yahoo email</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 text-center">
+        <h2>Age</h2>
+    </div>
+
+
+
+    <div class="w3-panel">
+
+        <hr />
+
+        <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-large">
+                <h5><b>Age Stats</b></h5>
+                <table class="w3-table w3-striped w3-white">
+                    <tr>
+                        <td><i class="fa fa-users w3-text-blue w3-large"></i></td>
+                        <td>Average Age</td>
+                        <td><i>@averageAge</i></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-user-circle w3-text-red w3-large"></i></td>
+                        <td>Less than 30 Years old</td>
+                        <td><i>@less30</i></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-user-circle-o w3-text-yellow w3-large"></i></td>
+                        <td>Between 30 and 50 years</td>
+                        <td><i>@bet30and50</i></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-blind w3-text-red w3-large"></i></td>
+                        <td>More than 50 Years old</td>
+                        <td><i>@more50</i></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 text-center">
+        <h2>Email</h2>
+    </div>
+
+
+    <div class="w3-container">
+        <hr />
+        <h5><b>Percentage</b></h5>
+        <p>With Email</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-red" style="width:@emailPercent%">@emailPercent%</div>
+        </div>
+
+        <p>With Observation</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-blue-grey" style="width:@obsPercent%">@obsPercent%</div>
+        </div>
+
+        <p>Completed</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-green" style="width:@comptPercent%">@comptPercent%</div>
+        </div>
+    </div>
+
+
+
+
+
+    @{
+
+        List<SGLClientBase.Models.Client> ultimosA = new List<SGLClientBase.Models.Client>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            SGLClientBase.Models.Client contain = Model.LastOrDefault(element => ultimosA.Contains(element) == false);
+
+            if (contain != null)
+            {
+                ultimosA.Add(contain);
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+    <div class="w3-container">
+        <h5><b>Email Usage</b></h5>
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+            <tr>
+                <td>Gmail</td>
+                <td>@gmailPercent%</td>
+            </tr>
+            <tr>
+                <td>Hotmail</td>
+                <td>@hotmailPercent%</td>
+            </tr>
+            <tr>
+                <td>Yahoo</td>
+                <td>@yahooPercent%</td>
+            </tr>
+            <tr>
+                <td>Others</td>
+                <td>@otherEPercent%</td>
+            </tr>
+        </table><br>
+    </div>
+
+
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Gmail', @gmailPercent],
+                ['Hotmail', @hotmailPercent],
+                ['Yahoo', @yahooPercent],
+                ['Others', @otherEPercent]
+
+            ]);
+
+            var options = {
+                title: ''
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+
+
+    <div class="w3-row-padding w3-margin-bottom w3-bordered w3-border " style="margin-left:1%;margin-right:1%;">
+
+        <div class="w3-half" style="margin-bottom:0px">
+            <div class="w3-container w3-white w3-padding-16">
+                <h5 class="w3-center">Email Usage</h5>
+
+                <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                    <tr>
+                        <td>Gmail</td>
+                        <td>@gmailPercent%</td>
+                    </tr>
+                    <tr>
+                        <td>Hotmail</td>
+                        <td>@hotmailPercent%</td>
+                    </tr>
+                    <tr>
+                        <td>Yahoo</td>
+                        <td>@yahooPercent%</td>
+                    </tr>
+                    <tr>
+                        <td>Others</td>
+                        <td>@otherEPercent%</td>
+                    </tr>
+
+                </table><br>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-container w3-white w3-padding-16" style="height:230px;">
+                <h5 class="w3-center">Age Pie Chart</h5>
+                <div id="piechart" class="" style="width:100%; height:90%; border:0px solid black;"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="col-lg-12 text-center">
+        <h2>Recent</h2>
+    </div>
+
+
+
+    <div class="w3-container">
+        <hr />
+        <h5><b>Recent Clients</b></h5>
+
+        @if (Model.Count() >= 4)
+        {
+            foreach (SGLClientBase.Models.Client item in ultimosA)
+            {
+                <ul class="w3-ul w3-card-4 w3-white">
+                    <li class="w3-padding-16">
+                        <img src="~/img/user.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                        <span class="w3-xlarge">@item.Name | @item.Rut</span><br>
+                    </li>
+                </ul>
+
+            }
+
+        }
+
+
+    </div>
+
+
+
+    <hr>
+
+
+
+
+
+    <!-- End page content -->
+</div>
+
+<script>
+    // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+        } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+        }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+    }
+</script>

@@ -1,0 +1,106 @@
+﻿@model SGLClientBase.Models.IndexViewModel
+<h2>SGL</h2>
+
+<img src="~/img/loginBack.jpg" class="img-responsive" />
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+
+<div class="col-lg-12 text-center">
+    <h2>Change your account settings</h2>
+</div>
+
+
+
+<div class="w3-panel" style="padding-left:15%; padding-right:15%;">
+    <hr />
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-large">
+            <table class="w3-table w3-white">
+
+                <tr>
+                    <td><i class="fa fa-hashtag w3-text-black w3-large"></i></td>
+                    <td>Password</td>
+                    <td>
+                        [
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                        ]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><i class="fa fa-address-card w3-text-black w3-large"></i></td>
+                    <td>External Logins</td>
+                    <td>
+                        @Model.Logins.Count [
+                        @Html.ActionLink("Manage", "ManageLogins") ]
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><i class="fa fa-unlock w3-text-black w3-large"></i></td>
+                    <td>Two-Factor Authentication</td>
+                    <td>
+                        <p>
+                            There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                            for details on setting up this ASP.NET application to support two-factor authentication.
+                        </p>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+    .dl-horizontal {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 35%;
+        border: 1px solid black;
+    }
+
+    .form-group {
+        border: 1px solid red;
+        width: 100%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .form-control {
+        width: 100%;
+        border: 1px solid blue;
+        margin-left: 15%;
+    }
+
+    .boxed {
+        width: 100%;
+    }
+</style>

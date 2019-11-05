@@ -1,0 +1,30 @@
+﻿@model SGLClientBase.Models.Client
+
+<img src="~/img/queryBack.jpg" class="img-responsive" />
+
+<h1>New Client</h1>
+
+@using (Html.BeginForm("Add", "Home")) // INICIAMOS EL FORMULARIO
+{
+<div class="jumbotron">
+    @Html.LabelFor(Model => Model.Name)
+    @Html.EditorFor(Model => Model.Name)
+    <br>
+    @Html.LabelFor(Model => Model.BirthDay)
+    @Html.EditorFor(Model => Model.BirthDay)
+    <br>
+    <label>Number</label>
+    @Html.EditorFor(Model => Model.Number)
+    <br>
+    @Html.LabelFor(Model => Model.Direction)
+    @Html.EditorFor(Model => Model.Direction)
+    <br>
+    @Html.LabelFor(Model => Model.Rut)
+    @Html.EditorFor(Model => Model.Rut)
+    <br>
+    @Html.LabelFor(Model => Model.Observation)
+    @Html.EditorFor(Model => Model.Observation)
+
+    <input type="submit" value="Send" class="btn btn-primary btn-block"/>
+</div>
+}

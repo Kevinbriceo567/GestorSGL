@@ -1,0 +1,105 @@
+﻿@model SGLClientBase.Models.Employee
+
+<h2>SGL</h2>
+
+<img src="~/img/emploBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+<div class="col-lg-12 text-center">
+    <h2>Employee Details</h2>
+</div>
+
+
+<hr />
+
+<style>
+
+    .dl-horizontal {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 28%;
+        border: 1px solid black;
+    }
+
+    .form-group {
+        border: 1px solid red;
+        width: 100%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .form-control {
+        width: 100%;
+        border: 1px solid blue;
+        margin-left: 15%;
+    }
+
+    .boxed {
+        width: 100%;
+    }
+</style>
+
+
+<div class="w3-panel" style="padding-left:15%; padding-right:15%;">
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-large">
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <td><i class="fa fa-hashtag w3-text-black w3-large"></i></td>
+                    <td>ID</td>
+                    <td><i>@Html.DisplayFor(model => model.ID)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-address-card w3-text-black w3-large"></i></td>
+                    <td>First Name</td>
+                    <td><i>@Html.DisplayFor(model => model.FirstName)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-address-card-o w3-text-black w3-large"></i></td>
+                    <td>Last Name</td>
+                    <td><i>@Html.DisplayFor(model => model.LastName)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-sort-numeric-asc w3-text-black w3-large"></i></td>
+                    <td>Rut</td>
+                    <td><i>@Html.DisplayFor(model => model.Rut)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-birthday-cake w3-text-black w3-large"></i></td>
+                    <td>Birthday</td>
+                    <td><i>@Html.DisplayFor(model => model.BirthDay)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-envelope-o w3-text-black w3-large"></i></td>
+                    <td>Company Email</td>
+                    <td><i>@Html.DisplayFor(model => model.EmailCompany)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-phone w3-text-black w3-large"></i></td>
+                    <td>Phone</td>
+                    <td><i>@Html.DisplayFor(model => model.PhoneNumber)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-money w3-text-black w3-large"></i></td>
+                    <td>Dollar Salary</td>
+                    <td><i>$@Html.DisplayFor(model => model.DollarSalary)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-th w3-text-black w3-large"></i></td>
+                    <td>Position</td>
+                    <td><i>@Html.DisplayFor(model => model.Position)</i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-12 text-center">
+    <div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

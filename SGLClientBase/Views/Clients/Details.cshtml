@@ -1,0 +1,95 @@
+﻿@model SGLClientBase.Models.Client
+
+<h2>SGL</h2>
+
+<img src="~/img/databaseBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+<div class="col-lg-12 text-center">
+    <h2>Client Details</h2>
+</div>
+
+
+<hr />
+
+<style>
+
+    .dl-horizontal {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 28%;
+        border: 1px solid black;
+    }
+
+    .form-group {
+        border: 1px solid red;
+        width: 100%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .form-control {
+        width: 100%;
+        border: 1px solid blue;
+        margin-left: 15%;
+    }
+
+    .boxed {
+        width: 100%;
+    }
+</style>
+
+
+<div class="w3-panel" style="padding-left:15%; padding-right:15%;">
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-large">
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <td><i class="fa fa-hashtag w3-text-black w3-large"></i></td>
+                    <td>ID</td>
+                    <td><i>@Html.DisplayFor(model => model.ID)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-address-card w3-text-black w3-large"></i></td>
+                    <td>Name</td>
+                    <td><i>@Html.DisplayFor(model => model.Name)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-birthday-cake w3-text-black w3-large"></i></td>
+                    <td>Birthday</td>
+                    <td><i>@Html.DisplayFor(model => model.BirthDay)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-envelope-o w3-text-black w3-large"></i></td>
+                    <td>Email Address</td>
+                    <td><i>@Html.DisplayFor(model => model.EmailAddress)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-map-marker w3-text-black w3-large"></i></td>
+                    <td>Direction</td>
+                    <td><i>@Html.DisplayFor(model => model.Direction)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-sort-numeric-asc w3-text-black w3-large"></i></td>
+                    <td>Rut</td>
+                    <td><i>@Html.DisplayFor(model => model.Rut)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-align-left w3-text-black w3-large"></i></td>
+                    <td>Observation</td>
+                    <td><i>@Html.DisplayFor(model => model.Observation)</i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-12 text-center">
+    <div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

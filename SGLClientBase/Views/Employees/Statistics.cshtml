@@ -1,0 +1,507 @@
+﻿@model IEnumerable<SGLClientBase.Models.Employee>
+
+<h2>SGL</h2>
+
+
+@{int employee = 0;
+    List<string> positions = new List<string>();}
+
+
+@foreach (var item in Model)
+{
+    ++employee;
+
+    if (positions.Contains(item.Position) == false)
+    {
+        positions.Add(item.Position);
+    }
+
+    ++employee;
+
+}
+
+
+@{int sallary10 = 0;}
+@{int sallary5 = 0;}
+@{int sallary2 = 0;}
+@{int sallaryLess = 0;}
+
+@{int more50 = 0;}
+@{int bet30and50 = 0;}
+@{int less30 = 0;}
+
+
+@foreach (var item in Model)
+{/*
+
+if (item.EmailAddress.EndsWith("gmail.com"))
+{
+++gmailE;
+}
+
+else if (item.EmailAddress.EndsWith("hotmail.com"))
+{
+++hotmailE;
+}
+
+else if (item.EmailAddress.EndsWith("yahoo.com"))
+{
+++yahooE;
+}
+
+else
+{
+++otherE;
+}
+
+*/
+}
+
+
+
+
+@{int yearsT = 0;
+    int maxSallary = 0;}
+
+
+
+@foreach (var item in Model)
+{
+
+    DateTime Dob = item.BirthDay;
+
+    int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+    int dob = int.Parse(Dob.ToString("yyyyMMdd"));
+    int age = (now - dob) / 10000;
+
+
+    yearsT += age;
+
+
+    if (age > 50)
+    {
+        ++more50;
+    }
+    else if (age <= 50 && age >= 30)
+    {
+        ++bet30and50;
+    }
+    else
+    {
+        ++less30;
+    }
+
+    if (Convert.ToInt32(item.DollarSalary) > maxSallary)
+    {
+        maxSallary = Convert.ToInt32(item.DollarSalary);
+    }
+
+    if (Convert.ToInt32(item.DollarSalary) > 10000)
+    {
+        ++sallary10;
+    }
+    else if (Convert.ToInt32(item.DollarSalary) >= 5000 && Convert.ToInt32(item.DollarSalary) < 10000)
+    {
+        ++sallary5;
+    }
+    else if (Convert.ToInt32(item.DollarSalary) >= 2000 && Convert.ToInt32(item.DollarSalary) < 5000)
+    {
+        ++sallary2;
+    }
+    else if (Convert.ToInt32(item.DollarSalary) < 2000 && Convert.ToInt32(item.DollarSalary) > 0)
+    {
+        ++sallaryLess;
+    }
+
+
+
+}
+
+
+@{
+    int averageAge = yearsT / Model.Count();
+
+}
+
+
+
+@{ // PERCENTAGES
+
+    int s10Percent = (sallary10 * 100) / Model.Count();
+
+    int s5Percent = (sallary5 * 100) / Model.Count();
+
+    int s2Percent = (sallary2 * 100) / Model.Count();
+
+    int sLessPercent = (sallaryLess * 100) / Model.Count();
+
+
+
+    int more50Percent = (more50 * 100) / Model.Count();
+
+    int bet30and50Percent = (bet30and50 * 100) / Model.Count();
+
+    int less30Percent = (less30 * 100) / Model.Count();
+
+}
+
+
+
+
+
+
+
+
+
+
+<img src="~/img/emploBack.jpg" class="img-responsive" style="border-radius:5px" />
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:0px;margin-top:5px;">
+
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:5px">
+
+        <div class="col-lg-12 text-center">
+            <h2><i class="fa fa-server"></i> Employees Statistics</h2>
+        </div>
+
+
+
+    </header>
+
+    <hr />
+
+    <div class="w3-row-padding w3-margin-bottom">
+
+        <div class="w3-quarter">
+            <div class="w3-container w3-dark-grey w3-padding-16">
+                <div class="w3-left"><i class="fa fa-user w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@Model.Count()</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Employees</h4>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-blue-grey w3-text-white w3-padding-16">
+                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@averageAge</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Average Age</h4>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-red w3-padding-16">
+                <div class="w3-left"><i class="fa fa-briefcase w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@positions.Count()</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Positions</h4>
+            </div>
+        </div>
+
+        <div class="w3-quarter">
+            <div class="w3-container w3-green w3-padding-16">
+                <div class="w3-left"><i class="fa fa-level-up w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>@maxSallary</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>Max Sallary</h4>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--AGE---------------------------------------------------------------------------------------------->
+    <div class="col-lg-12 text-center">
+        <h2>Age</h2>
+    </div>
+
+    <div class="w3-container">
+        <hr>
+        <h5>Age Stats</h5>
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+            <tr>
+                <td>Average Age</td>
+                <td>@averageAge</td>
+            </tr>
+            <tr>
+                <td>Less than 30 Years old</td>
+                <td>@less30</td>
+            </tr>
+            <tr>
+                <td>Between 30 and 50 years</td>
+                <td>@bet30and50</td>
+            </tr>
+            <tr>
+                <td>More than 50 Years old</td>
+                <td>@more50</td>
+            </tr>
+        </table><br>
+    </div>
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Less than 30 Years old', @less30Percent],
+                ['Between 30 and 50 years', @bet30and50Percent],
+                ['More than 50 Years old', @more50Percent]
+
+            ]);
+
+            var options = {
+                title: ''
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+    <div class="w3-row-padding w3-margin-bottom" style="margin-left:1%;margin-right:1%;">
+
+        <div class="w3-half">
+            <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+                <h5 class="w3-center">Age Percentages</h5>
+
+                <p>Less than 30 Years old</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-green" style="width:@less30Percent%">@less30Percent%</div>
+                </div>
+
+                <p>Between 30 and 50 years</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-blue-grey" style="width:@bet30and50Percent%">@bet30and50Percent%</div>
+                </div>
+
+                <p>More than 50 Years old</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-red" style="width:@more50Percent%">@more50Percent%</div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+                <h5 class="w3-center">Age Pie Chart</h5>
+                <div id="piechart" style="width:100%; height:100%; border:0px solid black;"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!--SALLARY---------------------------------------------------------------------------------------------->
+    <div class="col-lg-12 text-center">
+        <h2>Sallary</h2>
+    </div>
+
+
+    <div class="w3-container">
+        <hr>
+        <h5>Sallary Distribution</h5>
+        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+            <tr>
+                <td>More than $10000</td>
+                <td>@sallary10</td>
+            </tr>
+            <tr>
+                <td>Between $5000 and $9999</td>
+                <td>@sallary5</td>
+            </tr>
+            <tr>
+                <td>Between $2000 and $4999</td>
+                <td>@sallary2</td>
+            </tr>
+            <tr>
+                <td>Less than $2000</td>
+                <td>@sallaryLess</td>
+            </tr>
+        </table><br>
+    </div>
+
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Less than $2000', @sLessPercent],
+                ['Between $2000 and $4999', @s2Percent],
+                ['Between $5000 and $9999', @s5Percent],
+                ['More than $10000', @s10Percent]
+
+            ]);
+
+            var options = {
+                title: ''
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechartS'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="w3-row-padding w3-margin-bottom" style="margin-left:1%;margin-right:1%;">
+
+        <div class="w3-half">
+            <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+                <h5 class="w3-center">Salary Percentages</h5>
+
+                <p>More than $10000</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-red" style="width:@s10Percent%">@s10Percent%</div>
+                </div>
+
+                <p>Between $5000 and $9999</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-green" style="width:@s5Percent%">@s5Percent%</div>
+                </div>
+
+                <p>Between $2000 and $4999</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-blue-grey" style="width:@s2Percent%">@s2Percent%</div>
+                </div>
+
+                <p>Less than $2000</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-dark-grey" style="width:@sLessPercent%">@sLessPercent%</div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-half">
+            <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+                <h5 class="w3-center">Sallary Pie Chart</h5>
+                <div id="piechartS" style="width:100%; height:100%; border:0px solid black;"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="col-lg-12 text-center">
+        <h2>Positions</h2>
+    </div>
+
+
+    <div class="w3-container">
+        <hr />
+        <h5>List of Positions</h5>
+
+        @if (Model.Count() > 0)
+        {
+            foreach (string position in positions)
+            {
+                <ul class="w3-ul w3-card-4 w3-white">
+                    <li class="w3-padding-16">
+                        <img src="~/img/user.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                        <span class="w3-xlarge">@position</span><br>
+                    </li>
+                </ul>
+
+            }
+
+        }
+
+
+    </div>
+
+    <hr>
+
+
+
+
+
+    <!-- End page content -->
+</div>
+
+<script>
+    // Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+    // Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+    // Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+        } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+        }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
