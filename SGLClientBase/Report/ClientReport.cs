@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using SGLClientBase.Models;
+using sun.net.www.content.image;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,8 @@ namespace SGLClientBase.Report
         Font _fontStyle;
         PdfPTable _pdfTable = new PdfPTable(8);
         PdfPCell _pdfPCell;
+
+
         MemoryStream _memoryStream = new MemoryStream();
         List<Client> _clients = new List<Client>();
         #endregion
@@ -41,6 +44,8 @@ namespace SGLClientBase.Report
             this.ReportBody();
             _pdfTable.HeaderRows = 1;
             _document.Add(_pdfTable);
+
+
             _document.Close();
             return _memoryStream.ToArray();
         }

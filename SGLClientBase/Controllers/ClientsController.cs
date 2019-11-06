@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using SGLClientBase.Models;
 using SGLClientBase.Report;
+using Rotativa;
 
 namespace SGLClientBase.Controllers
 {
     [Authorize]
     public class ClientsController : Controller
     {
+
         private SGLClientBase5Context db = new SGLClientBase5Context();
 
         // GET: Clients
@@ -171,5 +173,13 @@ namespace SGLClientBase.Controllers
 
             return clients;
         }
+
+        public ActionResult PrintClient()
+        {
+            var q = new ActionAsPdf("Index");
+            return q;
+        }
+
+
     }
 }

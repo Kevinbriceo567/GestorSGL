@@ -8,12 +8,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PuppeteerSharp;
+using Rotativa;
 using SGLClientBase.Models;
+using SGLClientBase.Report;
 
 namespace SGLClientBase.Controllers
 {
     
-    [Authorize]
+
     public class EmployeesController : Controller
     {
 
@@ -146,6 +148,43 @@ namespace SGLClientBase.Controllers
 
             return View(db.Employees.ToList());
 
+        }
+
+        public ActionResult EmployeeReport(Client client)
+        {
+            EmployeeReport clientReport = new EmployeeReport();
+            byte[] abytes = clientReport.PrepareReport(GetEmployees());
+            return File(abytes, "application/pdf");
+        }
+
+        public List<Employee> GetEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            Employee employee = new Employee();
+
+            foreach (var item in db.Employees)
+            {
+                employee = new Employee();
+                employee.ID = item.ID;
+                employee.FirstName = item.FirstName;
+                employee.LastName = item.LastName;
+                employee.Rut = item.Rut;
+                employee.BirthDay = item.BirthDay;
+                employee.EmailCompany = item.EmailCompany;
+                employee.PhoneNumber = item.PhoneNumber;
+                employee.DollarSalary = item.DollarSalary;
+                employee.Position = item.Position;
+                employees.Add(employee);
+
+            }
+
+            return employees;
+        }
+
+        public ActionResult PrintEmployee()
+        {
+            var q = new ActionAsPdf("Index");
+            return q;
         }
 
 

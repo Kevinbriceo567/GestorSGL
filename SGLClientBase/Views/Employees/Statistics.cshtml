@@ -228,7 +228,6 @@ else
 
 
 
-
     <!--AGE---------------------------------------------------------------------------------------------->
     <div class="col-lg-12 text-center">
         <h2>Age</h2>
@@ -462,70 +461,70 @@ else
 
 
 
-<div class="w3-row-padding w3-margin-bottom" style="margin-left:1%;margin-right:1%;">
-    <hr />
+    <div class="w3-row-padding w3-margin-bottom" style="margin-left:1%;margin-right:1%;">
+        <hr />
 
-    <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
-        <h5 class="">Positons Percentages</h5>
+        <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+            <h5 class="">Positons Percentages</h5>
 
-        @{
-            int index = 0;
-        }
+            @{
+                int index = 0;
+            }
 
-        @foreach (var position in positions)
-        {
-            int percent = (positionsN[index] * 100) / Model.Count();
+            @foreach (var position in positions)
+            {
+                int percent = (positionsN[index] * 100) / Model.Count();
 
-            ++index;
+                ++index;
 
-            <p>@position</p>
-            <div class="w3-light-grey">
-                <div class="w3-container w3-center w3-padding w3-red" style="width:@percent%">@percent%</div>
-            </div>
-        }
+                <p>@position</p>
+                <div class="w3-light-grey">
+                    <div class="w3-container w3-center w3-padding w3-red" style="width:@percent%">@percent%</div>
+                </div>
+            }
+
+
+        </div>
 
 
     </div>
 
 
-</div>
 
+<div class="w3-row-padding w3-margin-bottom" style="margin-left:1%;margin-right:1%;">
+    <hr />
+    <div class="w3-container w3-white w3-padding-16 w3-bordered w3-border">
+        <div class="w3-container">
 
-    <div class="w3-container">
+            <h5>List of Positions</h5>
 
-        <h5>List of Positions</h5>
-
-        @if (Model.Count() > 0)
-        {
-            foreach (string position in positions)
+            @if (Model.Count() > 0)
             {
-                <ul class="w3-ul w3-card-4 w3-white">
-                    <li class="w3-padding-16">
-                        <img src="~/img/user.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">@position</span><br>
-                    </li>
-                </ul>
+                foreach (string position in positions)
+                {
+                    <ul class="w3-ul w3-white w3-bordered w3-border" style="margin-top:1%;">
+                        <li class="w3-padding-16">
+                            <img src="~/img/user.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                            <span class="w3-xlarge">@position</span><br>
+                        </li>
+                    </ul>
+
+                }
 
             }
 
-        }
+
+        </div>
+    </div>
+</div>
 
 
+    <div class="col-lg-12 text-center">
+        <h2>Office overview</h2>
     </div>
 
-    <hr>
 
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -566,59 +565,246 @@ else
 
 
 
-
-
-
-
-
 <style>
-    #div1, #div2, #div3{
-        float: left;
-        width: 100px;
-        height: 35px;
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid black;
-    }
+body{
+  background: white;
+}
+h1 {
+  color: #CA7218;
+}
+
+#cuadro1, #cuadro2, #cuadro3, #papelera, #cuadroF1, #cuadroF2 {
+	float: left;
+	width: 200px;
+	height: 190px;
+	padding: 10px;
+	margin: 8px;
+}
+
+#cuadro3, #papelera {
+  height: 80px;
+}
+
+#cuadro1{
+	background: #F0F2EB;
+}
+
+#cuadro2 {
+	background: #F0F2EB;
+}
+
+#cuadro3 {
+	background: #F0F2EB;
+  border: 1px solid black
+}
+
+#cuadroF1, #cuadroF2 {
+  background: #F0F2EB;
+}
+
+#papelera {
+	background: #F0F2EB;
+  border: 1px solid black
+}
+
+.cuadradito {
+	background: #288;
+	border: 2px solid #882;
+	width: 150px;
+	height: 20px;
+	padding: 0 10px 15px;
+	margin: 5px;
+}
+
+#arrastrable1 {
+	background: white;
+	border: 2px solid #822;
+}
+
+#arrastrable2 {
+	background: aqua;
+	border: 2px solid #228;
+}
+
+#arrastrable3 {
+	background: orange;
+	border: 2px solid #282;
+}
+
+#arrastrable4 {
+	background: violet;
+	border: 2px solid #282;
 </style>
+
+
+
+
+
+
+<section>
+    <hr>
+
+    <div id="cuadro1" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)">
+        Office Room 1
+
+        <div class="cuadradito" id="arrastrable1" draggable="true" ondragstart="start(event)" ondragend="end(event)">
+            Web Designers
+        </div>
+
+        <div class="cuadradito" id="arrastrable2" draggable="true" ondragstart="start(event)" ondragend="end(event)">
+            Programmers
+        </div>
+
+        <div class="cuadradito" id="arrastrable3" draggable="true" ondragstart="start(event)" ondragend="end(event)">
+            Graphic designers
+        </div>
+
+        <div class="cuadradito" id="arrastrable4" draggable="true" ondragstart="start(event)" ondragend="end(event)">
+            Data Scientists
+        </div>
+
+    </div>
+
+    <div id="cuadro2" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)">
+        Office Room 2
+    </div>
+
+
+    <div id="cuadroF1" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)">
+        Office Room 3
+    </div>
+
+
+    <div id="cuadroF2" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)">
+        Office Room 4
+    </div>
+
+    <div id="cuadro3" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return clonar(event)">
+        Copy
+    </div>
+    <div id="papelera" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return eliminar(event)">Delete</div>
+</section>
+
+
+
+
+
 <script>
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
+  contador = 0; // Variable global para tener poder poner un id unico a cada elemento cuando se clona.
+		function start(e) {
+			e.dataTransfer.effecAllowed = 'move'; // Define el efecto como mover (Es el por defecto)
+			e.dataTransfer.setData("Data", e.target.id); // Coje el elemento que se va a mover
+			e.dataTransfer.setDragImage(e.target, 0, 0); // Define la imagen que se vera al ser arrastrado el elemento y por donde se coje el elemento que se va a mover (el raton aparece en la esquina sup_izq con 0,0)
+			e.target.style.opacity = '0.4'; 
+		}
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-    }
+		function end(e){
+			e.target.style.opacity = ''; // Pone la opacidad del elemento a 1 			
+			e.dataTransfer.clearData("Data");
+		}
 
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-    }
+		function enter(e) {
+			e.target.style.border = '3px dotted #555'; 
+		}
+
+		function leave(e) {
+			e.target.style.border = ''; 
+		}
+
+		function over(e) {
+			var elemArrastrable = e.dataTransfer.getData("Data"); // Elemento arrastrado
+			var id = e.target.id; // Elemento sobre el que se arrastra
+			
+			// return false para que se pueda soltar
+			if (id == 'cuadro1'){
+				return false; // Cualquier elemento se puede soltar sobre el div destino 1
+			}
+
+			if ((id == 'cuadro2') && (elemArrastrable != 'arrastrable3')){
+				return false; // En el cuadro2 se puede soltar cualquier elemento menos el elemento con id=arrastrable3
+			}	
+      
+   			if ((id == 'cuadroF1') && (elemArrastrable != 'arrastrable3')){
+				return false; // En el cuadro2 se puede soltar cualquier elemento menos el elemento con id=arrastrable3
+			}
+      
+      
+      			if ((id == 'cuadroF2') && (elemArrastrable != 'arrastrable3')){
+				return false; // En el cuadro2 se puede soltar cualquier elemento menos el elemento con id=arrastrable3
+			}	
+
+			if (id == 'cuadro3')
+				return false;
+	
+			if (id == 'papelera')
+				return false; // Cualquier elemento se puede soltar en la papelera
+				
+		}
+
+    
+		/**
+		* 
+		* Mueve el elemento
+		*
+		**/
+		function drop(e){
+
+			var elementoArrastrado = e.dataTransfer.getData("Data"); // Elemento arrastrado
+			e.target.appendChild(document.getElementById(elementoArrastrado));
+			e.target.style.border = '';  // Quita el borde
+			tamContX = $('#'+e.target.id).width();
+			tamContY = $('#'+e.target.id).height();
+
+			tamElemX = $('#'+elementoArrastrado).width();
+			tamElemY = $('#'+elementoArrastrado).height();
+ 	
+			posXCont = $('#'+e.target.id).position().left;
+			posYCont = $('#'+e.target.id).position().top;
+
+			// Posicion absoluta del raton
+			x = e.layerX;
+			y = e.layerY;
+
+			// Si parte del elemento que se quiere mover se queda fuera se cambia las coordenadas para que no sea asi
+			if (posXCont + tamContX <= x + tamElemX){
+				x = posXCont + tamContX - tamElemX;
+			}
+
+			if (posYCont + tamContY <= y + tamElemY){
+				y = posYCont + tamContY - tamElemY;
+			}
+
+			document.getElementById(elementoArrastrado).style.position = "absolute";
+			document.getElementById(elementoArrastrado).style.left = x + "px";
+			document.getElementById(elementoArrastrado).style.top = y + "px";
+		}
+
+		/**
+		* 
+		* Elimina el elemento que se mueve
+		*
+		**/
+		function eliminar(e){
+			var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
+			elementoArrastrado.parentNode.removeChild(elementoArrastrado); // Elimina el elemento
+			e.target.style.border = '';   // Quita el borde
+		}
+
+		/**
+		* 
+		* Clona el elemento que se mueve
+		*
+		**/
+		function clonar(e){
+			var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
+
+			elementoArrastrado.style.opacity = ''; // Dejamos la opacidad a su estado anterior para copiar el elemento igual que era antes
+
+			var elementoClonado = elementoArrastrado.cloneNode(true); // Se clona el elemento
+			elementoClonado.id = "ElemClonado" + contador; // Se cambia el id porque tiene que ser unico
+			contador += 1;	
+			elementoClonado.style.position = "static";	// Se posiciona de forma "normal" (Sino habria que cambiar las coordenadas de la posición)	
+			e.target.appendChild(elementoClonado); // Se añade el elemento clonado
+			e.target.style.border = '';   // Quita el borde del "cuadro clonador"
+		}
 </script>
-
-
-
-<h2>Drag and Drop</h2>
-<p>Positon 1</p>
-
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-</div>
-
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-
-
-<p>Positon 2</p>
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <img src="~/img/siaiBack.jpg" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-</div>
-
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-
