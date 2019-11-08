@@ -33,6 +33,7 @@ namespace SGLClientBase.Controllers
             {
                 return View(db.Clients.Where(x => x.PhoneNumber == search || search == null).ToList());
             }
+
         }
 
         // GET: Clients/Details/5
