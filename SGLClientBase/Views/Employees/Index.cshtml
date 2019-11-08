@@ -108,29 +108,29 @@
 
 <!-- Stats -->
 
-    <div class="w3-row-padding w3-center" style="margin:0 -16px; padding:16px; padding-top:0px;">
+<div class="w3-row-padding w3-center" style="margin:0 -16px; padding:16px; padding-top:0px;">
 
-        <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-left-radius: 10px;">
-            <p><i class="fa fa-user w3-xxlarge w3-text-light-grey"></i></p>
-            <span class="w3-xxlarge">@emplo</span>
-            <br>Number of Employees
-        </div>
-        <div class="w3-quarter w3-theme-l1" style="padding:12px;">
-            <p><i class="fa fa-users w3-xxlarge w3-text-light-grey"></i></p>
-            <span class="w3-xxlarge">@averageAge</span>
-            <br>Average age
-        </div>
-        <div class="w3-quarter w3-theme-l1" style="padding:12px;">
-            <p><i class="fa fa-money w3-xxlarge w3-text-light-grey"></i></p>
-            <span class="w3-xxlarge">$@promSallary</span>
-            <br>Average Sallary
-        </div>
-        <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-right-radius: 10px;">
-            <p><i class="fa fa-bolt w3-xxlarge w3-text-light-grey"></i></p>
-            <span class="w3-xxlarge">@largeSallary</span>
-            <br>+$10000 Sallary
-        </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-left-radius: 10px;">
+        <p><i class="fa fa-user w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">@emplo</span>
+        <br>Number of Employees
     </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px;">
+        <p><i class="fa fa-users w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">@averageAge</span>
+        <br>Average age
+    </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px;">
+        <p><i class="fa fa-money w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">$@promSallary</span>
+        <br>Average Sallary
+    </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-right-radius: 10px;">
+        <p><i class="fa fa-bolt w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">@largeSallary</span>
+        <br>+$10000 Sallary
+    </div>
+</div>
 
 
 
@@ -215,25 +215,25 @@
                 @Html.DisplayNameFor(model => model.ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                Last Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rut)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDay)
+                Birthday
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailCompany)
+                Company Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                Phone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DollarSalary)
+                Dollar Sallary
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Position)
@@ -305,7 +305,7 @@
 
 
 
-
+                    <!--
                     <img src="~/img/editIcon.png" style="height:20px" />
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
 
@@ -314,6 +314,13 @@
 
                     <img src="~/img/deleteIcon.png" style="height:20px" />
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    -->
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn w3-dark-grey" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
 
 
 
@@ -347,3 +354,165 @@
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<img src="~/img/emploBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+
+
+
+<a class="btn btn-default" style="margin-bottom:10px;" onclick="PopupForm('@Url.Action("AddOrEdit", "Employees")')"><i class="fa fa-plus"></i> Add New</a>
+
+<table id="employeeTable" class="table table-striped table-bordered" style="width:100%">
+
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Rut</th>
+            <th>Birthday</th>
+            <th>Company Email</th>
+            <th>Phone</th>
+            <th>Dollar Salary</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+
+
+
+</table>
+
+
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+            dataTable =  $("#employeeTable").DataTable({
+                "ajax": {
+                    "url": "/Employees/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "FirstName" },
+                    { "data": "LastName" },
+                    { "data": "Rut" },
+                    { "data": "BirthDay" },
+                    { "data": "EmailCompany" },
+                    { "data": "PhoneNumber" },
+                    { "data": "DollarSalary" },
+                    { "data": "Position" },
+                    {"data":"ID" , "render" : function (data) {
+                        return "<a class='btn btn-default btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Employees")/" + data + "')><i class='fa fa-pencil'></i> Edit</a><a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete("+data+")><i class='fa fa-trash'></i> Delete</a>";
+                    },
+                        "orderable": false,
+                        "searchable":false,
+                        "width":"150px"
+                    }
+
+                ],
+                "language": {
+
+                    "emptyTable" : "No data found, Please click on <b>Add New</b> Button"
+                }
+            });
+        });
+
+        function PopupForm(url) {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response);
+
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+                    title: 'Fill Employee Details',
+                    height: 500,
+                    width: 700,
+                    close: function () {
+                        Popup.dialog('destroy').remove();
+                    }
+
+                });
+            });
+        }
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if($(form).valid()){
+                $.ajax({
+                    type : "POST",
+                    url : form.action,
+                    data : $(form).serialize(),
+                    success : function (data) {
+                        if(data.success)
+                        {
+                            Popup.dialog('close');
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message,{
+                                globalPosition :"top center",
+                                className : "success"
+                            })
+
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+
+        function Delete(id) {
+            if(confirm('Are You Sure to Delete this Employee Record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete","Employees")/' + id,
+                    success: function (data) {
+                        if (data.success)
+                        {
+                            dataTable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            })
+
+                        }
+                    }
+
+                });
+            }
+        }
+    </script>
+}
+
+    -->

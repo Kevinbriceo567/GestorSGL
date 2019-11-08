@@ -299,10 +299,10 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDay)
+                Birthday
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailAddress)
+                Email
             </th>
             <th style="width:30px">
                 Phone
@@ -318,8 +318,7 @@
             </th>
 
             <th>
-
-
+                Actions
             </th>
         </tr>
 
@@ -372,8 +371,8 @@
                 <td>
 
                     @{
-                        if (!String.IsNullOrEmpty(item.Observation))
-                        {
+            if (!String.IsNullOrEmpty(item.Observation))
+            {
 
 
                             <div id="accordion">
@@ -416,30 +415,32 @@
                                 </div>
                             </div>
 
-                        }
-                        else
-                        {
+            }
+            else
+            {
 
 
                             <p class="text-center">Empty</p>
 
 
-                        }
+            }
                     }
 
                     <!-- Observation Accordion -->
 
                 </td>
                 <td>
-
+                    <!--
                     <img src="~/img/editIcon.png" style="height:20px" />
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-
                     <img src="~/img/detailIcon.png" style="height:20px" />
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-
                     <img src="~/img/deleteIcon.png" style="height:20px" />
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    -->
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
 
                 </td>
             </tr>
@@ -461,11 +462,6 @@
 
 
 </div>
-
-
-
-
-
 
 
 

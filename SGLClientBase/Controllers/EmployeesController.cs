@@ -15,7 +15,7 @@ using SGLClientBase.Report;
 namespace SGLClientBase.Controllers
 {
     
-
+    [Authorize]
     public class EmployeesController : Controller
     {
 
@@ -37,6 +37,7 @@ namespace SGLClientBase.Controllers
                 return View(db.Employees.Where(x => x.PhoneNumber == search || search == null).ToList());
             }
         }
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)

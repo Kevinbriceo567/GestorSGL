@@ -126,8 +126,13 @@
         <!--@Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })-->
         <div class="col-md-12">
 
-                @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+            <select class="form-control" id="Position" name="Position">
+                <option value="Web Designer">Web Designer</option>
+                <option value="Programmer">Programmer</option>
+            </select>
+
+            <!--@Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })-->
+            @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
         </div>
     </div>
 
