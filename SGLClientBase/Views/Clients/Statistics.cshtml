@@ -135,6 +135,12 @@
     int yahooPercent = (hotmailE * 100) / Model.Count();
 
     int otherEPercent = (otherE * 100) / Model.Count();
+
+    // AGE //
+
+    int less30Percent = (less30 * 100) / Model.Count();
+    int bet30and50Percent = (bet30and50 * 100) / Model.Count();
+    int more50Percent = (more50 * 100) / Model.Count();
 }
 
 
@@ -170,17 +176,7 @@
 
     <div class="w3-row-padding w3-margin-bottom">
 
-        <div class="w3-quarter">
-            <div class="w3-container w3-dark-grey w3-padding-16">
-                <div class="w3-left"><i class="fa fa-plus w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3>23</h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4>Registration</h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
+        <div class="w3-third">
             <div class="w3-container w3-blue-grey w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
@@ -190,7 +186,7 @@
                 <h4>Clients</h4>
             </div>
         </div>
-        <div class="w3-quarter">
+        <div class="w3-third">
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="fa fa-envelope w3-xxxlarge"></i></div>
                 <div class="w3-right">
@@ -201,7 +197,7 @@
             </div>
         </div>
 
-        <div class="w3-quarter">
+        <div class="w3-third">
             <div class="w3-container w3-purple w3-padding-16">
                 <div class="w3-left"><i class="fa fa-yahoo w3-xxxlarge"></i></div>
                 <div class="w3-right">
@@ -219,10 +215,9 @@
         <h2>Age</h2>
     </div>
 
-
+    <hr />
 
     <div class="w3-panel">
-
         <hr />
 
         <div class="w3-row-padding" style="margin:0 -16px">
@@ -254,8 +249,30 @@
         </div>
     </div>
 
+
+    <div class="w3-container">
+
+        <h5><b>Percentage</b></h5>
+        <p>Less than 30 Years old</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-red" style="width:@less30Percent%">@less30Percent%</div>
+        </div>
+
+        <p>Between 30 and 50 years</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-blue-grey" style="width:@bet30and50Percent%">@bet30and50Percent%</div>
+        </div>
+
+        <p>More than 50 Years old</p>
+        <div class="w3-grey">
+            <div class="w3-container w3-center w3-padding w3-green" style="width:@more50Percent%">@more50Percent%</div>
+        </div>
+    </div>
+
+
+
     <div class="col-lg-12 text-center">
-        <h2>Email</h2>
+        <h2>Status</h2>
     </div>
 
 
@@ -276,6 +293,14 @@
         <div class="w3-grey">
             <div class="w3-container w3-center w3-padding w3-green" style="width:@comptPercent%">@comptPercent%</div>
         </div>
+
+
+
+        <div class="col-lg-12 text-center">
+            <h2>Email</h2>
+            <hr />
+        </div>
+
     </div>
 
 
@@ -305,28 +330,6 @@
 
 
 
-
-    <div class="w3-container">
-        <h5><b>Email Usage</b></h5>
-        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-            <tr>
-                <td>Gmail</td>
-                <td>@gmailPercent%</td>
-            </tr>
-            <tr>
-                <td>Hotmail</td>
-                <td>@hotmailPercent%</td>
-            </tr>
-            <tr>
-                <td>Yahoo</td>
-                <td>@yahooPercent%</td>
-            </tr>
-            <tr>
-                <td>Others</td>
-                <td>@otherEPercent%</td>
-            </tr>
-        </table><br>
-    </div>
 
 
 
@@ -363,7 +366,7 @@
 
 
 
-    <div class="w3-row-padding w3-margin-bottom w3-bordered w3-border " style="margin-left:1%;margin-right:1%;">
+    <div class="w3-row-padding w3-margin-bottom w3-bordered w3-border " style="margin-left:1%;margin-right:1%; margin-top:2%">
 
         <div class="w3-half" style="margin-bottom:0px">
             <div class="w3-container w3-white w3-padding-16">
