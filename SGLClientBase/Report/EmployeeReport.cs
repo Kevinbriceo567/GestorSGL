@@ -13,7 +13,7 @@ namespace SGLClientBase.Report
     {
         #region Declaration
         int _totalColumn = 9;
-        Document _document;
+        iTextSharp.text.Document _document;
         Font _fontStyle;
         PdfPTable _pdfTable = new PdfPTable(9);
         PdfPCell _pdfPCell;
@@ -28,7 +28,7 @@ namespace SGLClientBase.Report
             _employees = employees;
 
             #region
-            _document = new Document(PageSize.A4, 0f, 0f, 0f, 0f);
+            _document = new iTextSharp.text.Document(PageSize.A4, 0f, 0f, 0f, 0f);
             _document.SetPageSize(PageSize.A4);
             _document.SetMargins(20f, 20f, 20f, 20f);
 
@@ -54,7 +54,7 @@ namespace SGLClientBase.Report
         private void ReportHeader()
         {
             _fontStyle = FontFactory.GetFont("Tahoma", 11f, 1);
-            _pdfPCell = new PdfPCell(new Phrase("SGL Clients Database Report", _fontStyle));
+            _pdfPCell = new PdfPCell(new Phrase("SGL Employees Database Report", _fontStyle));
             _pdfPCell.Colspan = _totalColumn;
             _pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
             _pdfPCell.Border = 0;
@@ -64,7 +64,7 @@ namespace SGLClientBase.Report
             _pdfTable.CompleteRow();
 
             _fontStyle = FontFactory.GetFont("Tahoma", 9f, 1);
-            _pdfPCell = new PdfPCell(new Phrase("Clients List", _fontStyle));
+            _pdfPCell = new PdfPCell(new Phrase("Employees List", _fontStyle));
             _pdfPCell.Colspan = _totalColumn;
             _pdfPCell.HorizontalAlignment = Element.ALIGN_CENTER;
             _pdfPCell.Border = 0;

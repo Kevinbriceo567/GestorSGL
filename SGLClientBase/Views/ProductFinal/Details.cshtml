@@ -1,0 +1,164 @@
+﻿@model SGLClientBase.Models.ProductFinal
+
+<h2>SGL</h2>
+
+<img src="~/img/productBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+<div class="col-lg-12 text-center">
+    <h2>Product Details</h2>
+</div>
+
+
+<hr />
+
+<style>
+
+    .dl-horizontal {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 28%;
+        border: 1px solid black;
+    }
+
+    .form-group {
+        border: 1px solid red;
+        width: 100%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .form-control {
+        width: 100%;
+        border: 1px solid blue;
+        margin-left: 15%;
+    }
+
+    .boxed {
+        width: 100%;
+    }
+
+    .centerImg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<!--
+<div>
+    <h4>ProductFinal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DollarPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DollarPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            <img class="w3-center centerImg" src="~/Images/@Url.Content(Model.ImagePath)" width="200" height="200" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+-->
+
+
+
+<div class="w3-panel" style="padding-left:15%; padding-right:15%;">
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-large">
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <td><i class="fa fa-hashtag w3-text-black w3-large"></i></td>
+                    <td>ID</td>
+                    <td><i>@Html.DisplayFor(model => model.ID)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-address-card w3-text-black w3-large"></i></td>
+                    <td>First Name</td>
+                    <td><i>@Html.DisplayFor(model => model.Name)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-address-card-o w3-text-black w3-large"></i></td>
+                    <td>Last Name</td>
+                    <td><i>@Html.DisplayFor(model => model.Description)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-sort-numeric-asc w3-text-black w3-large"></i></td>
+                    <td>Rut</td>
+                    <td><i>@Html.DisplayFor(model => model.Codename)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-birthday-cake w3-text-black w3-large"></i></td>
+                    <td>Birthday</td>
+                    <td><i>@Html.DisplayFor(model => model.ReleaseDate)</i></td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-envelope-o w3-text-black w3-large"></i></td>
+                    <td>Company Email</td>
+                    <td><i>@Html.DisplayFor(model => model.DollarPrice)</i></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h4 class="text-center">Image</h4>
+    <img class="w3-center centerImg" src="~/Images/@Url.Content(Model.ImagePath)" width="280" height="200" />
+</div>
+
+
+<div class="col-lg-12 text-center" style="margin-top:40px;">
+    <div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

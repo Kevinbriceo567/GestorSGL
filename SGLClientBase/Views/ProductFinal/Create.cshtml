@@ -1,0 +1,238 @@
+﻿@model SGLClientBase.Models.ProductFinal
+
+
+<!--
+@using (Html.BeginForm("Create", "ProductFinal", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ProductFinal</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Codename, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Codename, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Codename, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DollarPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DollarPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DollarPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+
+                <input id="ImagePath" title="Upload a product image"
+                       type="file" name="ImagePath" required />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+-->
+
+
+
+
+
+
+<h2>SGL</h2>
+
+<img src="~/img/productBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+<div class="col-lg-12 text-center">
+    <h2>New Product</h2>
+    <hr />
+</div>
+
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+    }
+
+    .grid-item {
+        border: 1px solid white;
+        padding: 20px;
+        font-size: 1em;
+        text-align: center;
+    }
+
+    .form-control {
+        width: 250px;
+        margin-left: 0px;
+        /*border: 2px solid blue;*/
+    }
+
+    .control-label {
+        text-align: left;
+        width: 150px;
+        /*border: 2px solid red;*/
+    }
+
+    .form-group {
+        /*border: 2px solid green;*/
+    }
+</style>
+
+
+<hr />
+
+@using (Html.BeginForm("Create", "ProductFinal", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="grid-container" style="padding-left:70px;">
+
+        <div class="grid-item">
+            <div class="form-group">
+                <label for="Name" class="control-label col-md-2"><i class="fa fa-pencil"></i> Name</label>
+
+                <!--<i class="fa fa-font"></i> @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })-->
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="form-group">
+                <label for="Name" class="control-label col-md-2"><i class="fa fa-user-secret"></i> Codename</label>
+
+                <!--@Html.LabelFor(model => model.Codename, htmlAttributes: new { @class = "control-label col-md-2" })-->
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Codename, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Codename, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="form-group">
+
+                <label for="Name" class="control-label col-md-2"><i class="fa fa-calendar"></i> Release Date</label>
+
+                <div class="col-md-10">
+                    <!--@Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "12/24/2001" } })-->
+
+                    <input type="date" name="ReleaseDate" id="ReleaseDate" value="2018-07-22" class="form-control" />
+
+                    @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="form-group">
+
+                <label for="DollarPrice" class="control-label col-md-2"><i class="fa fa-money"></i> Dollar Price</label>
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DollarPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DollarPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="form-group">
+
+                <label for="DollarPrice" class="control-label col-md-2"><i class="fa fa-align-left"></i> Description</label>
+
+                <!--@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })-->
+
+                <div class="col-md-10">
+                    <!--@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })-->
+
+
+                    <textarea class="control-label col-md-2" style="width: 250px;" name="Description" id="Description" rows="6" cols="350" placeholder="Description here"></textarea>
+
+
+
+
+
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="grid-item">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+
+                    <input id="ImagePath" title="Upload a product image"
+                           type="file" name="ImagePath" required />
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="w3-center">
+        <hr />
+
+        <input type="submit" value="Create" class="btn btn-default w3-center" />
+
+        <div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default w3-center" })
+        </div>
+    </div>
+
+}

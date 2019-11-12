@@ -200,6 +200,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -345,26 +347,52 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductFinalController.cs" />
+    <Compile Include="Controllers\ProductsNewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\DBProductModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBProductModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBProductModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBProductModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBProductModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOC2Context.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\P1Context.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PF1Context.cs" />
+    <Compile Include="Models\ProductFinal.cs" />
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>DBProductModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SGLClientBase5Context.cs" />
     <Compile Include="Models\SGLEmployee6BaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ClientReport.cs" />
     <Compile Include="Report\EmployeeReport.cs" />
+    <Compile Include="Report\ProductReport.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +464,7 @@
     <Content Include="img\ingridBoss.jpg" />
     <Content Include="img\kevinBoss.jpg" />
     <Content Include="img\mainBack.jpg" />
+    <Content Include="img\productBack.jpg" />
     <Content Include="img\slide1.jpg" />
     <Content Include="img\slide2.jpg" />
     <Content Include="img\slide3.jpg" />
@@ -458,6 +487,16 @@
     <Content Include="img\williansBoss.jpg" />
     <Content Include="img\willP.jpg" />
     <Content Include="img\wuat.jpg" />
+    <Content Include="Models\DBProductModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBProductModel.edmx</DependentUpon>
+      <LastGenOutput>DBProductModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DBProductModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBProductModel.edmx</DependentUpon>
+      <LastGenOutput>DBProductModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
@@ -465,6 +504,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Browsers\qt.browser" />
+    <EntityDeploy Include="Models\DBProductModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBProductModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBProductModel.edmx.diagram">
+      <DependentUpon>DBProductModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -528,17 +574,32 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Statistics.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Employ\Index.cshtml" />
-    <Content Include="Views\Employ\AddOrEdit.cshtml" />
     <Content Include="Views\Employees\AddOrEdit.cshtml" />
+    <Content Include="Views\ProductsNew\Create.cshtml" />
+    <Content Include="Views\ProductsNew\Delete.cshtml" />
+    <Content Include="Views\ProductsNew\Details.cshtml" />
+    <Content Include="Views\ProductsNew\Edit.cshtml" />
+    <Content Include="Views\ProductsNew\Index.cshtml" />
+    <Content Include="Views\Document\Create.cshtml" />
+    <Content Include="Views\Document\Delete.cshtml" />
+    <Content Include="Views\Document\Details.cshtml" />
+    <Content Include="Views\Document\Edit.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Upload.cshtml" />
+    <Content Include="Views\ProductsNew\Statistics.cshtml" />
+    <Content Include="Views\ProductFinal\Create.cshtml" />
+    <Content Include="Views\ProductFinal\Delete.cshtml" />
+    <Content Include="Views\ProductFinal\Details.cshtml" />
+    <Content Include="Views\ProductFinal\Edit.cshtml" />
+    <Content Include="Views\ProductFinal\Index.cshtml" />
+    <Content Include="Views\ProductFinal\Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Content\ImageUploaded\" />
+    <Folder Include="Images\" />
+    <Folder Include="Image\" />
     <Folder Include="Views\Templates\" />
   </ItemGroup>
   <ItemGroup>
@@ -553,6 +614,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

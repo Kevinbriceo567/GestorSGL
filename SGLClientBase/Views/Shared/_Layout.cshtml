@@ -20,13 +20,64 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
+
 <body style="margin:0px;" id="myPage">
+
+
+
+    <style>
+        .dropbtn {
+            background-color: #222222;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /*
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }*/
+
+        .hoverF:hover {
+            background-color: #666666;
+        }
+    </style>
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
 
-
             <img src="~/img/sglLogoWhite.png" class="img-responsive container-fluid" />
-
 
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -35,24 +86,72 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                @Html.ActionLink("SGL Clients Base", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <!--@Html.ActionLink("SGL Clients Base", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:white; font-size: 16px;" })-->
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-lg" })</li>
-                    <li>@Html.ActionLink("Clients", "Index", "Clients", null, new { @class = "btn btn-lg" })</li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employees", null, new { @class = "btn btn-lg" })</li>
-                    <li>@Html.ActionLink("Headquarters", "Headquarters", "Home", null, new { @class = "btn btn-lg" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "btn btn-lg" })</li>
+                    <!--
+    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-lg" })</li>
+    <li>@Html.ActionLink("Clients", "Index", "Clients", null, new { @class = "btn btn-lg" })</li>
+    <li>@Html.ActionLink("Employees", "Index", "Employees", null, new { @class = "btn btn-lg" })</li>
+    <li>@Html.ActionLink("Products", "Index", "ProductFinal", null, new { @class = "btn btn-lg" })</li>
+    <li>@Html.ActionLink("Headquarters", "Headquarters", "Home", null, new { @class = "btn btn-lg" })</li>
+    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "btn btn-lg" })</li>
+    -->
+                    <li>
+                        <div class="dropdown hoverF" style="height:54px; padding-top:5px; border-radius:10px;">
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-lg", @style = "color:white; font-size: 16px;" })
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn btn-lg hoverF">Clients</button>
+                            <div class="dropdown-content">
+                                <div>@Html.ActionLink("Database", "Index", "Clients", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Statistics", "Statistics", "Clients", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Generate Report", "ClientReport", "Clients", null, new { @class = "btn" })</div>
+                            </div>
+                        </div>
+                    </li>
 
 
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn btn-lg hoverF">Employees</button>
+                            <div class="dropdown-content">
+                                <div>@Html.ActionLink("Database", "Index", "Employees", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Statistics", "Statistics", "Employees", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Generate Report", "EmployeeReport", "Employees", null, new { @class = "btn" })</div>
+                            </div>
+                        </div>
+                    </li>
 
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn btn-lg hoverF">Products</button>
+                            <div class="dropdown-content">
+                                <div>@Html.ActionLink("Database", "Index", "ProductFinal", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Statistics", "Statistics", "ProductFinal", null, new { @class = "btn" })</div>
+                                <div>@Html.ActionLink("Generate Report", "ProductReport", "ProductFinal", null, new { @class = "btn" })</div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="dropdown hoverF" style="height:54px; padding-top:5px; border-radius:10px;">
+                            @Html.ActionLink("Headquarters", "Headquarters", "Home", null, new { @class = "btn btn-lg", @style = "color:white; font-size: 16px;" })
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="dropdown hoverF" style="height:54px; padding-top:5px; border-radius:10px;">
+                            @Html.ActionLink("About", "About", "Home", null, new { @class = "btn btn-lg", @style = "color:white; font-size: 16px;" })
+                        </div>
+                    </li>
 
                 </ul>
-
-
-
-
 
                 <ul class="nav navbar-nav pull-right">
 
@@ -71,15 +170,8 @@
                 </ul>
 
             </div>
-
-
         </div>
     </div>
-
-
-
-
-
 
 
     <div class="container-fluid body-content" style="padding-left:80px;padding-right:80px">

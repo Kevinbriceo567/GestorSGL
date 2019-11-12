@@ -126,7 +126,6 @@ B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\System.Buffers.xml
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\System.Runtime.CompilerServices.Unsafe.xml
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\System.Text.Encodings.Web.xml
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\System.Threading.Tasks.Extensions.xml
-B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\obj\Debug\SGLClientBase.csprojAssemblyReference.cache
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\HtmlRenderer.dll
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\HtmlRenderer.PdfSharp.dll
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\PdfSharp.Charting.dll
@@ -169,3 +168,4 @@ B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\IKVM.OpenJDK.XML.WebServices
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\IKVM.OpenJDK.XML.XPath.dll
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\IKVM.Runtime.dll
 B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\bin\IKVM.Runtime.JNI.dll
+B:\CodeX\ASP.NET\V2\SGLClientBase\SGLClientBase\obj\Debug\SGLClientBase.csprojAssemblyReference.cache

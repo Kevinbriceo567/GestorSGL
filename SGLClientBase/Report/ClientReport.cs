@@ -14,7 +14,7 @@ namespace SGLClientBase.Report
     {
         #region Declaration
         int _totalColumn = 8;
-        Document _document;
+        iTextSharp.text.Document _document;
         Font _fontStyle;
         PdfPTable _pdfTable = new PdfPTable(8);
         PdfPCell _pdfPCell;
@@ -29,7 +29,7 @@ namespace SGLClientBase.Report
             _clients = clients;
 
             #region
-            _document = new Document(PageSize.A4, 0f, 0f, 0f, 0f);
+            _document = new iTextSharp.text.Document(PageSize.A4, 0f, 0f, 0f, 0f);
             _document.SetPageSize(PageSize.A4);
             _document.SetMargins(20f, 20f, 20f, 20f);
             _pdfTable.WidthPercentage = 100;

@@ -1,0 +1,451 @@
+﻿@model IEnumerable<SGLClientBase.Models.Product>
+
+
+
+<h2>SGL</h2>
+
+<img src="~/img/productBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+
+<style>
+
+    .formStyle {
+        border: 1px solid #707070;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        border-radius: 5px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        background-color: white;
+        padding: 1px;
+        width: 100%
+    }
+
+    .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 0px solid rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        font-size: 15px;
+        text-align: center;
+    }
+</style>
+
+
+@{int client = 0;}
+
+
+@foreach (var item in Model)
+{
+
+    ++client;
+
+}
+
+
+
+@{int withO = 0;}
+@{int withE = 0;}
+@{int compT = 0;}
+
+
+@{int yearsT = 0; }
+@{int averageAge = 0;}
+
+@{double sumDPrice = 0;}
+@{double averageDPrice = 0;}
+@{double sumEPrice = 0;}
+@{double averageEPrice = 0;}
+
+
+
+@foreach (var item in Model)
+{
+
+    DateTime Dob = item.ReleaseDate;
+
+    int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+    int dob = int.Parse(Dob.ToString("yyyyMMdd"));
+    int age = (now - dob) / 10000;
+
+    yearsT += age;
+
+
+    sumDPrice = sumDPrice + Convert.ToInt32(item.DollarPrice);
+
+    sumEPrice = sumEPrice * Convert.ToDouble(ViewBag.USDtoEUR);
+
+    /*
+    if (item.ReleaseDate.ToString()[-4] == DateTime.Now.Year.ToString())
+    {
+
+    }
+    */
+
+}
+
+@{
+    averageDPrice = sumDPrice / Model.Count();
+    averageDPrice = (Math.Truncate(averageDPrice * 100) / 100);
+}
+
+@{
+    double USDtoEUR = Convert.ToDouble(ViewBag.USDtoEUR);
+
+    averageEPrice = averageDPrice * USDtoEUR;
+
+}
+
+
+@{
+    if (Model.Count() != 0)
+    {
+        averageAge = yearsT / Model.Count();
+    }
+
+}
+
+
+
+
+
+<!-- Stats -->
+
+<div class="w3-row-padding w3-center" style="margin:0 -16px; padding:16px; padding-top:0px;">
+
+    <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-left-radius: 10px;">
+        <p><i class="fa fa-user w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">@Model.Count()</span>
+        <br>Number of Products
+    </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px;">
+        <p><i class="fa fa-users w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">$@averageDPrice</span>
+        <br>Average Dollar price
+    </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px;">
+        <p><i class="fa fa-align-left w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">€@averageEPrice</span>
+        <br>Average Euro price
+    </div>
+    <div class="w3-quarter w3-theme-l1" style="padding:12px; border-bottom-right-radius: 10px;">
+        <p><i class="fa fa-check w3-xxlarge w3-text-light-grey"></i></p>
+        <span class="w3-xxlarge">@compT</span>
+        <br>Launched this year
+    </div>
+</div>
+
+
+
+
+<!--
+<div class="formStyle">
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Number of clients
+            </th>
+            <th>
+                Average age
+            </th>
+            <th>
+                With Observation
+            </th>
+            <th>
+                With Email Address
+            </th>
+
+            <th>Completed</th>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                @client
+            </td>
+            <td>
+                @averageAge
+            </td>
+            <td>
+                @withO
+            </td>
+            <td>
+                @withE
+            </td>
+            <td>
+                @compT
+            </td>
+
+        </tr>
+
+
+    </table>
+
+
+
+
+</div>
+-->
+
+<br />
+
+
+
+
+
+@{
+    if (Model.Count() != 0)
+    {
+        int obsPercent = (withO * 100) / Model.Count();
+
+        int emailPercent = (withE * 100) / Model.Count();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-lg-12 text-center">
+    <h1>Products</h1>
+</div>
+
+<div class="col-lg-12 text-center">
+
+
+    <div class="grid-container">
+        <div class="grid-item">
+            @Html.ActionLink("Statistics", "Statistics", null, new { @class = "btn btn-default  btn-block" })
+        </div>
+
+        <div class="grid-item">@Html.ActionLink("Add New Product", "Create", null, new { @class = "btn btn-default  btn-block" }) </div>
+
+        <div class="grid-item">
+            <div id="accordion">
+                <div class="card">
+
+                    <div class="card-header text-center">
+
+                        <a class="collapsed card-link btn btn-default  btn-block" data-toggle="collapse" href="#searchId">
+                            Search By
+                        </a>
+                    </div>
+
+                    <div id="searchId" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+
+                            <br />
+
+
+                            <div>
+
+                                <div class="text-center">
+
+                                    @using (Html.BeginForm("Index", "ProductsNew", FormMethod.Get))
+                                    {
+                                        @Html.RadioButton("searchBy", "Name", true, new { @class = "form-check-input" }) <text>Name</text>
+                                        @Html.RadioButton("searchBy", "Codename", false, new { @class = "form-check-input" }) <text>Codename</text><br />
+                                        @Html.TextBox("search", null, new { @class = "text-center" }) <br /> <input type="submit" value="Search" class="btn btn-success" style="margin-top:15px" />
+                                    }
+
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="grid-item">@Html.ActionLink("Generate Report", "ClientReport", null, new { @class = "btn btn-success  btn-block" }) </div>
+
+        <br />
+
+    </div>
+</div>
+
+<div class="formStyle">
+
+
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codename)
+            </th>
+            <th>
+                Release Date
+            </th>
+            <th>
+                Dollar Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="8"><div class="col-lg-12 text-center" style="border-radius:0px"><h5>Without results</h5></div></td>
+            </tr>
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+
+                    @{
+                        if (!String.IsNullOrEmpty(item.Description))
+                        {
+
+
+                            <div id="accordion">
+                                <div class="card">
+
+                                    <div class="card-header text-center">
+
+                                        <img src="~/img/expandIcon.png" style="height:20px" />
+
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#@Html.DisplayFor(modelItem => item.Name)">
+                                            Expand
+                                        </a>
+                                    </div>
+
+                                    <div id="@Html.DisplayFor(modelItem => item.Name)" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+
+
+
+                                            <div>
+                                                <hr />
+                                                <dl class="">
+
+                                                    <dt>
+                                                        @Html.DisplayNameFor(model => model.Description)
+                                                    </dt>
+
+                                                    <dd>
+                                                        @Html.DisplayFor(model => item.Description)
+                                                    </dd>
+
+                                                </dl>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+
+
+                            <p class="text-center">Empty</p>
+
+
+                        }
+                    }
+
+                    <!-- Observation Accordion -->
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DollarPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>
+
+
+                <td>
+                    <!--
+                    <img src="~/img/editIcon.png" style="height:20px" />
+                    <img src="~/img/detailIcon.png" style="height:20px" />
+                    <img src="~/img/deleteIcon.png" style="height:20px" />
+                    -->
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+        }
+
+    </table>
+
+
+
+
+</div>
+

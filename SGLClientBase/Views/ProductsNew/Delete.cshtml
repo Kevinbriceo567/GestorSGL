@@ -1,0 +1,200 @@
+﻿@model SGLClientBase.Models.Product
+
+<h2>SGL</h2>
+
+<img src="~/img/productBack.jpg" class="img-responsive" style="border-radius:0px" />
+
+<div class="col-lg-12 text-center">
+    <h2>Delete Product</h2>
+</div>
+
+
+<style>
+
+    .form-horizontal {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 65%;
+        /*border: 1px solid black;*/
+    }
+
+    .form-group {
+        border: 1px solid red;
+        width: 110%;
+        margin-left: 20%;
+        text-align: right;
+    }
+
+    .form-control {
+        width: 100%;
+        /*border: 1px solid blue;*/
+    }
+
+    .boxed {
+        width: 100%;
+    }
+
+    .col-md-2 {
+        /*border: 1px solid yellow;*/
+        width: 100px;
+        text-align: center
+    }
+
+    .control-label {
+        /*border: 1px dotted violet;*/
+    }
+
+    .centerImg {
+
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+    }
+
+</style>
+
+<!--
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DollarPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DollarPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+-->
+
+
+
+
+
+
+
+<div class="form-horizontal">
+    <h3 style="text-align:center">Are you sure you want to delete this?</h3>
+    <div>
+        <hr />
+
+
+        <div class="w3-panel" style="padding-left:1%; padding-right:1%;">
+            <div class="w3-row-padding" style="margin:0 -16px">
+                <div class="w3-large">
+                    <table class="w3-table w3-striped w3-white">
+                        <tr>
+                            <td><i class="fa fa-hashtag w3-text-black w3-large"></i></td>
+                            <td>ID</td>
+                            <td><i>@Html.DisplayFor(model => model.ID)</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-address-card w3-text-black w3-large"></i></td>
+                            <td>First Name</td>
+                            <td><i>@Html.DisplayFor(model => model.Name)</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-address-card-o w3-text-black w3-large"></i></td>
+                            <td>Last Name</td>
+                            <td><i>@Html.DisplayFor(model => model.Description)</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-sort-numeric-asc w3-text-black w3-large"></i></td>
+                            <td>Rut</td>
+                            <td><i>@Html.DisplayFor(model => model.Codename)</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-birthday-cake w3-text-black w3-large"></i></td>
+                            <td>Birthday</td>
+                            <td><i>@Html.DisplayFor(model => model.ReleaseDate)</i></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-envelope-o w3-text-black w3-large"></i></td>
+                            <td>Company Email</td>
+                            <td><i>@Html.DisplayFor(model => model.DollarPrice)</i></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <h4 class="text-center">Image</h4>
+    <img class="w3-center centerImg" src="@Url.Content(Model.ImagePath)" width="200" height="200" />
+</div>
+
+
+<div class="col-lg-12 text-center" style="margin-top:40px;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
